@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        .container {
+            margin: 0 auto;
+            padding: 0;
+            /* border: 2px solid red; */
+        }
+
+        .row,
+        .row-top {
+            display: flex;
+
+        }
+
+        .row-top,
+        .row-bar {
+            background-color: #00B5AD;
+            color: #fff;
+
+        }
+
+        .navbar-left,
+        .navbar-right {
+            display: flex;
+            width: 100%;
+            margin: 10px;
+        }
+
+        /* 將"聯絡我們"置右 */
+        .navbar-right {
+            justify-content: flex-end;
+
+        }
+
+        .navbar-right>.contact {
+            color: white;
+        }
+
+        .section-title {
+            width: 100%;
+            /* margin: 10px; */
+        }
+
+        .col-md-5,
+        .btn {
+            display: flex;
+        }
+
+        .btn {
+            justify-content: flex-end;
+            font-size: 0.rem;
+            border: 2px solid red;
+            color: white;
+        }
+
+        .col-md-5 {
+            margin: 2px;
+        }
+
+        .section-title>h4 {
+            margin-top: 5px;
+        }
+
+        .chart-area1 {
+            justify-content: space-between;
+            margin-top: 40px;
+
+        }
+
+        .chart1 {
+            /* max-width: 100%;
+            height: auto; */
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .chart1>img {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .row-bar {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-area2 {
+            justify-content: space-between;
+        }
+
+        p {
+            justify-content: center;
+            text-align: center;
+            margin: 5px;
+        }
+
+        .chart-area3 {
+            justify-content: center;
+            margin-bottom: 100px;
+        }
+
+        footer {
+            height: 100px;
+            background-color: #383838;
+        }
+
+        footer>p {
+            line-height: 90px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="container">
+        <div class="row-top">
+            <div class="navbar-left">
+                <div class="navbar-main">大眾情緒與股市分析</div>
+            </div>
+            <div class="navbar-right">
+                <a href="/members" class="contact">聯繫我們</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="row section-title">
+            <h4>選定時間</h4>
+            <div class="input-group data">
+                <input type="text" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-info btn-lg">查詢</button>
+        </section>
+
+        <section class="row chart-area1">
+            <div class="charts">
+                <p>恐懼與貪婪指數</p>
+                <div class="chart1">
+                    <img src="https://img.onl/RaZb9h" alt="">
+                </div>
+            </div>
+            <div class="charts">
+                <p>指數歷史紀錄</p>
+                <div class="chart1">
+                    <img src="https://img.onl/MF1duc" alt="">
+                </div>
+            </div>
+            <div class="charts">
+                <p>PTT熱門貼文</p>
+                <div class="chart1">
+                    <img src="https://img.onl/5rdBz5" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="row chart-area2">
+            <div class="row-bar">關鍵字文字雲與情感分布</div>
+            <div class="chart-left">
+                <p>關鍵字文字雲</p>
+                <div class="chart4">
+                    <img src="https://img.onl/YfGw2y" alt="">
+                </div>
+            </div>
+            <div class="chart-right">
+                <p>PTT貼文情感分布</p>
+                <div>
+                    <canvas id="myChart" width="300" height="300"></canvas>
+                </div>
+                <!-- <div class="chart5">
+                    <img src="https://img.onl/hS67Mu" alt="">
+                </div> -->
+            </div>
+        </section>
+        <section class="row chart-area3">
+            <div class="row-bar">社群情感與台股加權走勢比較和預測</div>
+            <div class="chart-left">
+                <p>社群情感與大盤指數走勢</p>
+                <div class="chart6">
+                    <img src="https://img.onl/JKArU9" alt="">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <p>AI人工智慧與資料分析實戰班課程 2021/4/12-2021/6/18</p>
+
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $('#sandbox-container > input').datepicker({
+            language: "zh-CN"
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // url後那串為api(無論是php或json都能到後台去拿資料)
+        $.ajax({
+            method: "GET",
+            // url: "./covid19/area0610.json",
+            url: "http://localhost/php/area0610.php",
+            dataType: "json"
+        })
+            // 取得key
+            .done(function (response) {
+
+                console.log("Date Saved: " + response);
+
+                // 將區域產生陣列、寫入圖表中
+                const area = [];
+                // 將累計確診人數產生陣列、寫入圖表中
+                const ppl = [];
+                // 直條圖之顏色
+                const rgba = [];
+                // idex=索引，item=一筆筆資料
+                //{"data":[{"id":"1","個案研判日":"2021-06-09","縣市":"南投縣","鄉鎮":"草屯鎮","性別":"女","是否為境外移入":"否","年齡層":"50-54"}
+                //跑迴圈取資料
+                for (let i = 0; i < response.data.length; i++) {
+                    const item = response.data[i];
+                    // 將區域、累計確診人數推進去,rgba最後一個要依照原本的留0.2(因為都是0.2)
+                    area.push(item.區域);
+                    ppl.push(item.累計確診人數);
+                    rgba.push(`rgba(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)}, 0.2)`);
+
+                }
+                // 都塞進去後，確認一下目前area的字串+變數
+                // console.log('area', area);
+                // console.log('ppl', ppl);
+                // console.log('rgba', rgba);
+
+                // 呼叫function，設定放入的值
+                updateChart(area, ppl, rgba);
+            });
+
+        // 產生直條圖之隨機色
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max - 50) + 100);
+        }
+
+        //丟label,data,backfround的陣列進來：設定出labelArr, dataArr, backgroundArr
+        function updateChart(labelArr, dataArr, backgroundArr) {
+            // 從chartjs上copy下來的
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                // 長條圖
+                type: 'pie',
+                data: {
+                    labels: labelArr,
+                    datasets: [{
+                        // number of 確診數
+                        label: '# of ppl',
+                        data: dataArr,
+                        backgroundColor: backgroundArr,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>
