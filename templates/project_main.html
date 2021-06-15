@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fix</title>
+    <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link href="fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #f4f7f6;
@@ -188,7 +191,7 @@
     <nav class="container" style="border-bottom: 1px solid #ccc">
         <div class="row-top">
             <div class="navbar right">
-                <a href="/members" class="contact">About us｜Contact</a>
+                <a href="/templates/contact_us.html" class="contact">About us｜Contact</a>
             </div>
             <div class="navbar name">
                 <div class="main">大眾情緒與股市分析</div>
@@ -205,7 +208,7 @@
     <main class="container">
         <div class="form">
             <label for="exampleFormControlInput1" class='select'>選定日期</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1">
+            <input type="text" id="my-date" class="form-control">
             <button type="submit" class="btn btn-primary">送出</button>
         </div>
 
@@ -265,11 +268,18 @@
 
         </div>
     </footer>
-
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        $(function () {
+            $("#my-date").datepicker();
+        });
+    </script>
+
 
     <script>
         // url後那串為api(無論是php或json都能到後台去拿資料)
@@ -398,10 +408,10 @@
                 // console.log('ppl', ppl);
                 // console.log('rgba', rgba);
 
-                updateChart(date, bi, close);
+                updateChartLine(date, bi, close);
             });
 
-        function updateChart(labelArr, dataArr, dataArr2) {
+        function updateChartLine(labelArr, dataArr, dataArr2) {
             // 從chartjs上copy下來的
             var canvas = document.getElementById('mixchart').getContext('2d');
             new Chart(canvas, {
@@ -492,11 +502,11 @@
                 // console.log('neg', neg);
 
                 // 呼叫function，設定放入的值
-                updateChart(date, pos, neg);
+                updateChartBar(date, pos, neg);
             });
 
 
-        function updateChart(labelArr, dataArr1, dataArr2) {
+        function updateChartBar(labelArr, dataArr1, dataArr2) {
             // 從chartjs上copy下來的
             var ctx = document.getElementById('emochart').getContext('2d');
             var emoChart = new Chart(ctx, {

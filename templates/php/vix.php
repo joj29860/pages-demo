@@ -23,7 +23,7 @@ try {
 }
 
 //下sql語法
-$sql = "SELECT * FROM `vix` WHERE Date = '2021-06-11'";
+$sql = "SELECT * FROM `vixtwn` WHERE Date = '2021-06-11'";
 //設定變數rows(很多行所以是rows:檔案從pdo來>執行一個查詢>比對所有資料，相符就存到變數rows裡)
 $rows = $pdo->query($sql)->fetchAll();
 
