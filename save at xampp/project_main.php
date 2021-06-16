@@ -43,14 +43,19 @@
             margin-bottom: 5px;
         }
 
-        .contact {
+        .contact,.predict {
             color: #000;
             font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .contact {
+            margin-right: 10px;
         }
 
         .fab {
-            margin: 2px;
-            font-size: 1.5rem;
+            margin: 3px;
+            font-size: 1.7rem;
         }
 
         .select {
@@ -67,7 +72,7 @@
         }
 
         .forecast {
-            width: 80%;
+            width: 100%;
         }
 
         .chart-area2 {
@@ -87,7 +92,7 @@
         .vix-intro,
         .hot-articles,
         .forecast,
-        .emtion {
+        .emtion,.wordcloud {
             /* 添加陰影 */
             box-shadow: 3px 3px 12px #ccc;
             padding: 3px;
@@ -97,14 +102,16 @@
         .vix-intro>h5,
         .vix>h5,
         .vix-intro>h5,
-        .emtion>h5 {
+        .emtion>h5,
+        .wordcloud>h5 {
             text-align: center;
             font-weight: bold;
         }
 
         .vix-intro>h5,
         .vix>h5,
-        .emtion>h5 {
+        .emtion>h5,
+        .wordcloud>h5 {
             margin: 5px 0px 20px 0px;
         }
 
@@ -147,6 +154,11 @@
         .emtion {
             width: 45%;
             text-align: center;
+        }
+
+        .wordcloud>img{
+            padding:30px;
+            width: 100%;
         }
 
         .forcast {
@@ -196,21 +208,24 @@
         /* 按鈕處有問題，縮小時會換行 */
 
         footer {
-            height: 100px;
+            height: 150px;
             background-color: #383838;
             color: #fff;
-            line-height: 100px;
+            line-height: 150px;
             text-align: center;
             margin-top: 150px;
         }
+
+
     </style>
 </head>
 
 <body>
     <nav class="container" style="border-bottom: 1px solid #ccc">
         <div class="row-top">
-            <div class="navbar right">
-                <a href="/pages-demo/contact_us.php" class="contact">About us｜Contact</a>
+            <div class="navbar left">
+                <a href="/pages-demo/contact_us.php" class="contact">About us</a>
+                <a href="http://192.168.0.110:5000/model2" class="predict">Predict</a>
             </div>
             <div class="navbar name">
                 <div class="main">大眾情緒與股市分析</div>
@@ -225,8 +240,7 @@
     </nav>
 
     <main class="container">
-        <div>
-            
+        <div>         
             <form class="form" action="/pages-demo/project_main.php" method="GET">
                  <label for="exampleFormControlInput1" class='select'>選定日期</label>
                 <input type="text" id="my-date" class="form-control" name="searchdate">
@@ -275,7 +289,7 @@
         <section class="row chart-area3">
             <div class="wordcloud">
                 <h5>該天PTT關鍵字雲</h5>
-
+                <img method = 'GET' src="https://localhost/pages-demo/img/<?=$_GET['searchdate']?>.png" alt="" >
             </div>
             <div class="emtion">
                 <h5>該天PTT情感呈現</h5>
@@ -286,9 +300,7 @@
     </main>
 
     <footer class="container">
-        <p>AI人工智慧與資料分析實戰班課程 2021/4/12-2021/6/18</p>
-
-        </div>
+        <p>AI人工智慧與資料分析實戰班課程 2021/4/12-2021/6/18</p>  
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -296,6 +308,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 
     <script>
         $(function () {
@@ -395,6 +409,7 @@
                     $('tbody').append(`
                         <tr>
                             <td>
+                            ${i+1}．
                             <a class='hot' href="${item.link}">${item.art}</a>
                             </td>
                         </tr>
@@ -411,7 +426,7 @@
         $.ajax({
             method: "GET",
             // url: "./covid19/test_data.json",
-            url: "http://localhost/php/test_data.php",
+            url: "https://localhost/pages-demo/php/test_data.php",
             dataType: "json"
         })
             // 取得key
@@ -453,17 +468,20 @@
                         // number of 確診數
                         label: 'BI指數',
                         data: dataArr,
+                        // 去除原點
+                        pointRadius: 0,
                         yAxisID: 'y',
                         // borderWidth: 1
                         backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgba(255, 99, 132, 0.4)',
+                        borderColor: 'rgba(255, 99, 132)',
                     }, {
                         label: '大盤指數',
                         data: dataArr2,
+                        pointRadius: 0,
                         yAxisID: 'y1',
                         // borderWidth: 1
-                        backgroundColor: 'rgb(122, 99, 255)',
-                        borderColor: 'rgba(102, 99, 255, 0.4)',
+                        backgroundColor:'rgba(102, 99, 255)',
+                        borderColor: 'rgba(102, 99, 255)',
                     }]
                 },
                 options: {
@@ -492,6 +510,7 @@
     </script>
 
     <script>
+    
         $.ajax({
             method: "GET",
             // url: "./covid19/pos_neg.json",
@@ -539,11 +558,11 @@
                     datasets: [{
                         label: '正面貼文數',
                         data: dataArr1,
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
                     }, {
                         label: '負面貼文數',
                         data: dataArr2,
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
 
                     }]
                 },

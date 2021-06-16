@@ -22,10 +22,12 @@ try {
     echo 'Ex:' . $ex->getMessage();
 }
 
+
+
 $date = $_GET["searchdate"];
 
 //下sql語法
-$sql = "SELECT date, pos, neg FROM `test_data` WHERE date = '$date'";
+$sql = "SELECT date, pos, neg FROM `ptt` WHERE date = '$date'";
 //設定變數rows(很多行所以是rows:檔案從pdo來>執行一個查詢>比對所有資料，相符就存到變數rows裡)
 $rows = $pdo->query($sql)->fetchAll();
 

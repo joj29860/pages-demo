@@ -85,10 +85,19 @@
 </head>
 
 <body>
-    <nav class="container">
+    <nav class="container" style="border-bottom: 1px solid #ccc">
         <div class="row-top">
-            <div class="navbar">
-                <a href="/" class="main">大眾情緒與股市分析</a>
+            <div class="navbar left">
+                <a href="/pages-demo/contact_us.php" class="contact">About us</a>
+                <a href="http://192.168.0.110:5000/model2" class="predict">Predict</a>
+            </div>
+            <div class="navbar name">
+                <div class="main">大眾情緒與股市分析</div>
+            </div>
+            <div class="navbar icon">
+                <i class="fab fa-facebook-square"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-line"></i>
             </div>
         </div>
     </nav>

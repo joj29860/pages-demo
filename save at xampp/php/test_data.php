@@ -23,7 +23,8 @@ try {
 }
 
 //下sql語法
-$sql = "SELECT date, BI, close FROM `test_data` WHERE NOT date = 'date'";
+// $sql = "SELECT date, BI, close FROM `test_data2` WHERE NOT date = 'date'";
+$sql = "SELECT  date, BI, close FROM `ptt` WHERE date BETWEEN '2021-01-01' AND '2021-06-03'";
 //設定變數rows(很多行所以是rows:檔案從pdo來>執行一個查詢>比對所有資料，相符就存到變數rows裡)
 $rows = $pdo->query($sql)->fetchAll();
 
