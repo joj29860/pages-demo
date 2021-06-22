@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fix</title>
+    <title>大眾情緒與股票分析</title>
     <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -38,7 +38,7 @@
         .main {
             color: #000;
             display: flex;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: bold;
             margin-bottom: 5px;
         }
@@ -181,26 +181,51 @@
 
 
         /* 按鈕處有問題，縮小時會換行 */
-        .form {
+        .first_row {
+            width:100%;
+            justify-content:space-between;
             padding: 15px 0;
             display: flex;
         }
 
+        form{
+            display: flex;
+        }
+        
+        .glance{
+            display:flex;
+            /* color: #f4f7f6; */
+        }
+
+        .label_2,.label_3{
+            margin: 10px 5px;
+            text-decoration: underline;
+            /* color:#1c49a9; */
+        }
+
+        .label_title{
+            margin: 10px 5px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            /* color:#1c49a9; */
+        }
+
         .btn {
+            width:auto;
+            height: fit-content;
             float: right;
-            width: 8%;
-            margin: 0 10px;
+            margin: 0 6px;
         }
 
         .form-control {
-            width: 80%;
-            margin: 0 6px 0 0;
+            width:auto;
+            margin: 0;
         }
 
         .select {
+            width:auto;
             /* 改文字高度與粗體 */
-            width: 10%;
-            margin: 6px 0;
+            margin: 6px;
             font-weight: bold;
             text-align: center;
         }
@@ -235,18 +260,24 @@
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-line"></i>
             </div>
-
         </div>
     </nav>
 
     <main class="container">
-        <div>         
+        <section class="first_row">         
+            
+            <div class="glance">
+                <h5 class='label_title'>快速導覽:</h5>
+                <h5 class='label_2'>情感與大盤走勢</h5>
+                <h5 class='label_3'>關鍵字與情感</h5>
+            </div>
             <form class="form" action="/pages-demo/project_main.php" method="GET">
                  <label for="exampleFormControlInput1" class='select'>選定日期</label>
                 <input type="text" id="my-date" class="form-control" name="searchdate">
                 <button type="submit" class="btn btn-primary">送出</button>
             </form>
-        </div>
+            
+        </section>
 
         <section class='row chart-area1'>
             <div class="vix">

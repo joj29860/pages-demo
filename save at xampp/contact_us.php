@@ -7,35 +7,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <title>About us</title>
+    <link href="fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
+    <title>關於我們</title>
     <style>
+        body {
+            background-color: #f4f7f6;
+        }
+
         .container {
+            width: 100%;
             padding: 0;
-            /* border: 2px solid pink; */
+            /* border: 2px solid palevioletred; */
         }
 
         .row-top {
-            background-color: #00B5AD;
+            /* 將"聯繫我們"橫過去 */
             display: flex;
+            justify-content: space-between;
+            margin: 0px 6px;
+            padding: 20px 0px;
+        }
+
+        .navbar {
+            padding: 0;
         }
 
         .main {
-            width: 100%;
-            color: #fff;
-            /* 撐開navbar */
+            color: #000;
             display: flex;
-            margin: 5px;
-            /* 除去底線 */
-            text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 2.3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .row {
-            display: flex;
+        .contact,.predict {
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
+
+        .contact {
+            margin-right: 10px;
+        }
+
+        .fab {
+            margin: 3px;
+            font-size: 1.7rem;
+        }
+
 
         .empty-heading {
-            margin: 30px;
+            margin: 50px;
             font-weight: bold;
             text-align: center;
             font-size: 1.5rem;
@@ -64,6 +86,15 @@
             border-radius: 50%;
             overflow: hidden;
             margin-top: 10px;
+            box-shadow: 3px 3px 12px #ccc;
+        }
+
+        form{
+            margin-top: 80px;
+        }
+
+        label{
+            font-weight: bold;
         }
 
         footer {
@@ -88,11 +119,10 @@
     <nav class="container" style="border-bottom: 1px solid #ccc">
         <div class="row-top">
             <div class="navbar left">
-                <a href="/pages-demo/contact_us.php" class="contact">About us</a>
                 <a href="http://192.168.0.110:5000/model2" class="predict">Predict</a>
             </div>
             <div class="navbar name">
-                <div class="main">大眾情緒與股市分析</div>
+                <a href="https://localhost/pages-demo/project_main.php?searchdate=2021-06-01" class="main">大眾情緒與股市分析</a>
             </div>
             <div class="navbar icon">
                 <i class="fab fa-facebook-square"></i>
@@ -107,29 +137,35 @@
         </header>
         <div class="row members">
             <div class="col">
-                <img src="https://img.onl/WyXbOs" alt="">
+                <img src="https://localhost/pages-demo/img/member_1.jpeg" alt="">
                 <h5>陳冠明</h5>
-                <p>爬蟲</p>
+                <p>資料獲取、機器學習</p>
+                <a href="#" class="btn btn-primary">Protfolio</a>
             </div>
             <div class="col">
-                <img src="https://img.onl/WyXbOs" alt="">
+                <img src="https://localhost/pages-demo/img/member_2.png" alt="">
                 <h5>郝逸清</h5>
-                <p>爬蟲</p>
+                <p>機器學習、前後端架設</p>
+                <a href="https://www.cakeresume.com/037bc0" class="btn btn-primary">Protfolio</a>
             </div>
             <div class="col">
-                <img src="https://img.onl/WyXbOs" alt="">
+                <img src="https://localhost/pages-demo/img/member_3.jpg" alt="">
                 <h5>曹宇玹</h5>
-                <p>爬蟲</p>
+                <p>情感分析、機器學習</p>
+                <a href="#" class="btn btn-primary">Protfolio</a>
             </div>
             <div class="col">
-                <img src="https://img.onl/WyXbOs" alt="">
+                <img src="https://localhost/pages-demo/img/member_4.jpg" alt="">
                 <h5>林佳儒</h5>
-                <p>爬蟲</p>
+                <p>情感分析、機器學習</p>
+                <a href="#" class="btn btn-primary">Protfolio</a>
             </div>
             <div class="col">
-                <img src="https://img.onl/WyXbOs" alt="">
+                <img src="https://localhost/pages-demo/img/member_5.jpg" alt="">
                 <h5>黃怡嫣</h5>
-                <p>爬蟲</p>
+                <p>網頁設計、前後端架設</p>
+                <!-- <p>MYSQL, HTML, CSS, JS, PHP</p> -->
+                <a href="https://www.linkedin.com/in/yiyen-haung/" class="btn btn-primary">Protfolio</a>
             </div>
         </div>
         <div class="contact-content">
@@ -145,11 +181,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">訊息主旨</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="MTitle">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="20字內" name="MTitle">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">訊息內容</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="MContext"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="MContext"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" id='submit' name='submit'>確定送出</button>
             </form>

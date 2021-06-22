@@ -25,7 +25,8 @@ try {
 $date = $_GET["searchdate"];
 
 //下sql語法
-$sql = "SELECT * FROM `vixtwn` WHERE Date = '$date'";
+// $sql = "SELECT * FROM `vixtwn` WHERE Date = '$date'";
+$sql = "SELECT date, vix FROM `ptt` WHERE date = '$date'";
 //設定變數rows(很多行所以是rows:檔案從pdo來>執行一個查詢>比對所有資料，相符就存到變數rows裡)
 $rows = $pdo->query($sql)->fetch();
 
@@ -38,8 +39,8 @@ header("Access-Control-Allow-Headers: X-Requested-With");
 echo json_encode([
     'data' => [
         [
-            "Date"=>$rows['Date'],
-            "Index"=>$rows['Index']
+            "Date"=>$rows['date'],
+            "Index"=>$rows['vix']
         ]
     ],
 ], JSON_UNESCAPED_UNICODE);
