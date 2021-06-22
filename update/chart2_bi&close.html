@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test_data1</title>
+    <!-- 寫入表格 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- 畫圖，套入chart.js -->
+            <canvas id="Chart" width="600" height="300"></canvas>
+            <!-- 會有格線 -->
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // url後那串為api(無論是php或json都能到後台去拿資料)
+        $.ajax({
+            method: "GET",
+            url: "./covid19/test_data.json",
+            // url: "http://localhost/php/test_data.php",
+            dataType: "json"
+        })
+            // 取得key
+            .done(function (response) {
+
+                console.log("Date Saved: " + response);
+
+                // 將區域產生陣列、寫入圖表中
+                const date = [];
+                // 將累計確診人數產生陣列、寫入圖表中
+                const bi = [];
+                const close = [];
+
+                // idex=索引，item=一筆筆資料
+                //{"data":[{"id":"1","個案研判日":"2021-06-09","縣市":"南投縣","鄉鎮":"草屯鎮","性別":"女","是否為境外移入":"否","年齡層":"50-54"}
+                //跑迴圈取資料
+                for (let i = 0; i < response.data.length; i++) {
+                    const item = response.data[i];
+                    // 將區域、累計確診人數推進去,rgba最後一個要依照原本的留0.2(因為都是0.2)
+                    date.push(item.date);
+                    bi.push(item.BI);
+                    close.push(item.close);
+
+                }
+                // 都塞進去後，確認一下目前area的字串+變數
+                // console.log('area', area);
+                // console.log('ppl', ppl);
+                // console.log('rgba', rgba);
+
+                // 呼叫function，設定放入的值
+                updateChart(date, bi, close);
+            });
+
+        // 產生直條圖之隨機色
+        // function getRandomInt(max) {
+        //     return Math.floor(Math.random() * Math.floor(max - 50) + 100);
+        // }
+
+        //丟label,data,background的陣列進來：設定出labelArr, dataArr, backgroundArr
+        function updateChart(labelArr, dataArr, dataArr2) {
+            // 從chartjs上copy下來的
+            var canvas = document.getElementById('Chart').getContext('2d');
+            new Chart(canvas, {
+                // 長條圖
+                type: 'line',
+                data: {
+                    labels: labelArr,
+                    datasets: [{
+                        // number of 確診數
+                        label: 'BI指數',
+                        data: dataArr,
+                        yAxisID: 'y',
+                        // borderWidth: 1
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgba(255, 99, 132, 0.4)',
+                    }, {
+                        label: '大盤指數',
+                        data: dataArr2,
+                        yAxisID: 'y1',
+                        // borderWidth: 1
+                        backgroundColor: 'rgb(122, 99, 255)',
+                        borderColor: 'rgba(102, 99, 255, 0.4)',
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+
+                            // grid line settings
+                            grid: {
+                                drawOnChartArea: false, // only want the grid lines for one axis to show up
+                            },
+                        },
+                    }
+                }
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>
